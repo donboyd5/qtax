@@ -1,0 +1,9 @@
+# qtax
+
+This package contains historical and recent state government quarterly tax data, from the U.S. Bureau of the Census. Eventually, I will integrate it with Lucy Dadayan's quarterly tax data for recent years, which is much more reliable than the Census Bureau's data, but has fewer tax elements.
+
+Install it from github with:
+  
+```{r}
+devtools::install_github("donboyd5/qtax")
+```
