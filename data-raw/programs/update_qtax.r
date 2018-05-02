@@ -22,7 +22,7 @@
 #                Libraries ####
 #****************************************************************************************************
 library("devtools")
-devtools::check(cleanup = FALSE) # when we want to see check output no matter what
+# devtools::check(cleanup = FALSE) # when we want to see check output no matter what
 
 
 library("magrittr")
