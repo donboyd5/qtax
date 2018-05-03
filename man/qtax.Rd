@@ -24,5 +24,6 @@ Quarterly tax revenue data for individual state governments and the U.S. in aggr
 }
 \examples{
   head(qtax)
+  comment(qtax)
 }
 \keyword{datasets}

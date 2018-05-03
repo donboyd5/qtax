@@ -34,4 +34,5 @@
 #'
 #' @examples
 #'   head(qtax)
+#'   comment(qtax)
 "qtax"

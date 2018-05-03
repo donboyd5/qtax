@@ -1,4 +1,5 @@
 
+
 #****************************************************************************************************
 #                Libraries ####
 #****************************************************************************************************
@@ -35,10 +36,11 @@ library("bdata")
 #****************************************************************************************************
 #.. If from the API:
 # fn <- paste0("qtfromapi_", Sys.Date(), ".rds") # format(Sys.Date(), "%d%b%Y")
+# filecomment <- "1994+ data were obtained from the Census API."
 
 #.. If from the zip file:
 fn <- "qtax_fromzip.rds"
-
+filecomment <- "1994+ data were obtained from the Census Economic Indicators zip file."
 
 # read the new file:
 qnew <- readRDS(paste0("./data-raw/", fn))
@@ -77,7 +79,7 @@ qtax %>% select(-value) %>% anyDuplicated()
 
 qtax %>% count(date) %>% data.frame
 
-comment(qtax) <- paste0("Quarterly tax data updated from Census API as of: ", Sys.Date())
+comment(qtax) <- paste0("Quarterly tax data updated on ", Sys.Date(), ". ", filecomment)
 comment(qtax)
 use_data(qtax, overwrite = TRUE)
 

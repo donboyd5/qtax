@@ -9,6 +9,8 @@ b) a Census zip file,
 and
 2) combine the updated data with historical data.
 
+Typing "comment(qtax)" will show when the data were updated, and whether the update was from the API or from a zip file.
+
 ## Installation
 
 Install qtax from github with:
@@ -20,7 +22,7 @@ devtools::install_github("donboyd5/qtax")
 
 ## Data sources
 
-I assembled the historical data from various Census Bureau files - mostly the spreadsheets that are or were on their website at https://www.census.gov/programs-surveys/qtax.html. Some of the historical data go back to 1963.
+I assembled the historical data from various Census Bureau files - mostly the spreadsheets that are now or once were on their website at https://www.census.gov/programs-surveys/qtax.html. Some of the historical data go back to 1963. Most or possibly all of these files, and associated documentation, can be found at https://www2.census.gov/govs/qtax/.
 
 The data for 1994+ are from one of two sources:
 1) The Census Bureau's API, at https://api.census.gov/data/timeseries/eits/qtax. (For data available via api see: https://api.census.gov/data.html.) The API is not always available (see https://apimetrics.io/2017/04/07/census-data-api-is-down/).
