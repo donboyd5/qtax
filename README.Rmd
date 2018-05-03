@@ -9,6 +9,17 @@ b) a Census zip file,
 and
 2) combine the updated data with historical data.
 
+## Installation
+
+Install qtax from github with:
+  
+```{r}
+devtools::install_github("donboyd5/qtax")
+```
+
+
+## Data sources
+
 I assembled the historical data from various Census Bureau files - mostly the spreadsheets that are or were on their website at https://www.census.gov/programs-surveys/qtax.html. Some of the historical data go back to 1963.
 
 The data for 1994+ are from one of two sources:
@@ -18,7 +29,9 @@ The data for 1994+ are from one of two sources:
 
 There is a third possible source of recent data that I do not use: spreadsheet data that are at https://www.census.gov/programs-surveys/qtax.html. I do not use the spreadsheet data because they currently are posted in a manner that is not computer friendly - the spreadhsheets have to be parsed one quarter at a time, and there are enough changes in format over time that it is a potentially error-prone activity.
 
-However, one issue with the API and zip data is that the Census Bureau has dropped 3 significant digits from the data, relative to the spreadsheet data. For example, the spreadsheet number of $1,234,567 thousand may be recorded in the API and zip data as $1,235 million. Thus, if you are looking at a small tax in a small state, some year-over-year changes may be quite misleading because of the relatively few significant digits. I have raised this with the Census Bureau many times, but it is not a high enough priority for them to fix it.
+## Data issues
+
+One issue with the API and zip data is that the Census Bureau has dropped 3 significant digits from the data, relative to the spreadsheet data. For example, the spreadsheet number of $1,234,567 thousand may be recorded in the API and zip data as $1,235 million. Thus, if you are looking at a small tax in a small state, some year-over-year changes may be quite misleading because of the relatively few significant digits. I have raised this with the Census Bureau many times, but it is not a high enough priority for them to fix it.
 
 I use the API and/or zip data for recent years despite this problem because (a) the precision problem usually is not important for most analyses, and (b) the API/zip data are much easier to work with than the spreadsheet data.
 
@@ -26,8 +39,4 @@ Another issue with the Census Bureau data is that the quality is often quite poo
 
 There are some oddities in some quarters. For example, in some quarters, the Census Bureau has records for the Alaska sales tax that are zero, consistent with Alaska's lack of a general sales tax. In a few quarters, the tax is near-zero but not precisely zero. I err on the side of caution and leave these kinds of records in the data.
 
-Install qtax from github with:
-  
-```{r}
-devtools::install_github("donboyd5/qtax")
-```
+
