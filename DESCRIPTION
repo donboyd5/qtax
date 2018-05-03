@@ -1,12 +1,12 @@
 Package: qtax
 Type: Package
-Title: Quarterly state government tax revenue from the Census Bureau
-Version: 0.1.0
+Title: Quarterly State Government Tax Revenue from the Census Bureau
+Version: 0.2.0
 Author: Don Boyd
 Maintainer: Don Boyd <donboyd5@gmail.com>
 Description: All states, and U.S., by tax.
     Some historical data goes back to 1963.
-    1994+ data obtained from the Census Bureau API.
+    1994+ data obtained from the Census Bureau API or a Census zip file, depending upon availability.
     Historical data obtained from various Census Bureau files.
 Depends:
     R (>= 2.10)    
