@@ -9,6 +9,8 @@ b) a Census zip file,
 and
 2) combine the updated data with historical data.
 
+The computer programs are in the directory "qtax/data-raw/programs/". The associated historical data are in "qtax/data-raw/".
+
 Typing "comment(qtax)" will show when the data were updated, and whether the update was from the API or from a zip file.
 
 ## Installation
