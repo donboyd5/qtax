@@ -1,6 +1,6 @@
 #' Quarterly State Government Tax Revenue Data.
 #'
-#' Quarterly tax revenue data for individual state governments and the U.S. in aggregate, by tax type, from 1963 (U.S.) through recent.
+#' Quarterly tax revenue data for individual state governments and the U.S. in aggregate, by tax type, from 1963 for selected items, through most recent.
 #'
 #' @format Data frame with 1 row per state, per tax, per quarter.
 #' \describe{
@@ -18,7 +18,7 @@
 #'
 #'   1) The Census Bureau's API, at https://api.census.gov/data/timeseries/eits/qtax. (For data available via api see: https://api.census.gov/data.html.) The API is not always available (see https://apimetrics.io/2017/04/07/census-data-api-is-down/).
 #'
-#'   2) A zip file that the Census Bureau maintains, with essentially the same information, for its "Economic Indicators" series: see  https://www.census.gov/econ/currentdata/datasets/QTAX-mf.zip at https://www.census.gov/econ/currentdata/datasets/index.
+#'   2) A zip file that the Census Bureau maintains, with essentially the same information, for its "Economic Indicators" series: see https://www.census.gov/econ/currentdata/datasets/QTAX-mf.zip at https://www.census.gov/econ/currentdata/datasets/index.
 #'
 #' There is a third possible source of recent data that I do not use: spreadsheet data that are at https://www.census.gov/programs-surveys/qtax.html. I do not use the spreadsheet data because they currently are posted in a manner that is not computer friendly - the spreadhsheets have to be parsed one quarter at a time, and there are enough changes in format over time that it is a potentially error-prone activity.
 #'
