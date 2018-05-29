@@ -107,7 +107,40 @@ summary(qapi2)
 # Save this file before moving on because the Census API is not always working, and good to have
 # historical files to fall back on.
 fn <- paste0("qtfromapi_", Sys.Date(), ".rds") # format(Sys.Date(), "%d%b%Y")
-saveRDS(qapi2, paste0("./data/", fn))
+saveRDS(qapi2, paste0("./data-raw/", fn))
+
+
+#****************************************************************************************************
+#                Save the national data ####
+#****************************************************************************************************
+qapi1 %>% filter()
+
+natl <- qapi1 %>%
+  filter(category_code == "QTAXCAT1", !str_detect(data_type_code, "4QE")) %>% # we don't want 4-quarter sums
+  mutate(value=as.numeric(as.character(cell_value)),
+         date=as.Date(paste(str_sub(time, 1, 4), as.numeric(str_sub(time, 7, 7))*3-2, 1, sep="-")),
+         stabbr=as.character(geo_level_code),
+         ic=as.character(data_type_code)) %>%
+  select(stabbr, date, ic, value) %>%
+  arrange(stabbr, date, ic)
+glimpse(natl)
+summary(natl)
+
+icodes <- readRDS("./data-raw/icodes.rds")
+glimpse(icodes)
+
+qtax_slgus <- natl %>%
+  left_join(icodes) %>%
+  select(stabbr, date, ic, vname, value, vdesc)
+glimpse(qtax_slgus)
+ht(qtax_slgus)
+qtax_slgus %>% select(-value) %>% anyDuplicated()
+
+count(qtax_slgus, ic, vname, vdesc)
+
+comment(qtax_slgus) <- paste0("National state & local government quarterly tax data updated from Census API as of: ", Sys.Date())
+comment(qtax_slgus)
+use_data(qtax_slgus, overwrite = TRUE)
 
 
 #****************************************************************************************************
