@@ -119,7 +119,7 @@ geo
 periods <- getseg("periods") %>%
   mutate(per_idx=as.integer(per_idx)) %>%
   filter(!is.na(per_idx))
-periods
+periods %>% ht
 
 data <- getseg("data") %>%
   mutate(per_idx=as.integer(per_idx)) %>%
