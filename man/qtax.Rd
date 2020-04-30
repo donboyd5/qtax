@@ -4,7 +4,8 @@
 \name{qtax}
 \alias{qtax}
 \title{Quarterly State Government Tax Revenue Data.}
-\format{Data frame with 1 row per state, per tax, per quarter.
+\format{
+Data frame with 1 row per state, per tax, per quarter.
 \describe{
 \item{stabbr}{state abbreviation}
 \item{date}{first day of quarter}
@@ -12,7 +13,8 @@
 \item{vname}{variable name (a memorable name for the item code, ic)}
 \item{value}{amount in $ millions}
 \item{vdesc}{variable description}
-}}
+}
+}
 \usage{
 qtax
 }

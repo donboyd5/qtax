@@ -1,5 +1,12 @@
 
-# Package authoring with RStudio:
+
+# code folding ----
+# alt-o, shift-alt-o
+# alt-l, shift-alt-l
+# alt-r
+
+
+# Package authoring with RStudio ----
 #
 #   http://r-pkgs.had.co.nz/
 #
@@ -11,35 +18,34 @@
 
 
 #****************************************************************************************************
-#                Libraries ####
+# Libraries ####
 #****************************************************************************************************
-library("devtools")
+library(devtools)
 # devtools::check(cleanup = FALSE) # when we want to see check output no matter what
 
-
-library("magrittr")
-library("plyr") # needed for ldply; must be loaded BEFORE dplyr
-library("tidyverse")
+library(magrittr)
+library(plyr) # needed for ldply; must be loaded BEFORE dplyr
+library(tidyverse)
 options(tibble.print_max = 60, tibble.print_min = 60) # if more than 60 rows, print 60 - enough for states
 # ggplot2 tibble tidyr readr purrr dplyr stringr forcats
 
-library("scales")
-library("hms") # hms, for times.
-library("lubridate") # lubridate, for date/times.
-library("readxl") # readxl, for .xls and .xlsx files.
-library("haven") # haven, for SPSS, SAS and Stata files.
-library("vctrs")
-library("precis")
+library(scales)
+library(hms) # hms, for times.
+library(lubridate) # lubridate, for date/times.
+library(readxl) # readxl, for .xls and .xlsx files.
+library(haven) # haven, for SPSS, SAS and Stata files.
+library(vctrs)
+library(precis)
 
-library("tibbletime") # https://business-science.github.io/tibbletime/
+library(tibbletime) # https://business-science.github.io/tibbletime/
 
-library("grDevices")
-library("knitr")
+library(grDevices)
+library(knitr)
 
-library("zoo") # for rollapply
+library(zoo) # for rollapply
 
-library("btools") # library that I created (install from github)
-library("bdata")
+library(btools) # library that I created (install from github)
+library(bdata)
 
 #****************************************************************************************************
 #                Get the already-created recent data that was obtained from the API or from a zip file ####
@@ -72,6 +78,7 @@ glimpse(icodes)
 
 qth <- readRDS("./data-raw/qtaxhist_useforpackage.rds")
 glimpse(qth)
+summary(qth) # 1963q1 to 1993q4
 
 qall <- bind_rows(qth, qnew)
 glimpse(qall)
@@ -87,7 +94,7 @@ glimpse(qtax)
 ht(qtax)
 qtax %>% select(-value) %>% anyDuplicated()
 
-qtax %>% count(date) %>% data.frame
+qtax %>% count(date) %>% data.frame # 1992 forward has the most values
 
 comment(qtax) <- paste0("Quarterly tax data updated on ", Sys.Date(), ". ", filecomment)
 comment(qtax)

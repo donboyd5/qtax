@@ -1,3 +1,11 @@
+
+# code folding ----
+# alt-o, shift-alt-o
+# alt-l, shift-alt-l
+# alt-r
+
+
+# notes ----
 # we want state gov only (category 3), exclude DC
 # 1994+
 # US = sum of states
@@ -6,41 +14,40 @@
 
 
 #****************************************************************************************************
-#                Libraries ####
+# Libraries ####
 #****************************************************************************************************
 library("devtools")
 # devtools::check(cleanup = FALSE) # when we want to see check output no matter what
 
 
-library("magrittr")
-library("plyr") # needed for ldply; must be loaded BEFORE dplyr
-library("tidyverse")
+library(magrittr)
+library(plyr) # needed for ldply; must be loaded BEFORE dplyr
+library(tidyverse)
 options(tibble.print_max = 60, tibble.print_min = 60) # if more than 60 rows, print 60 - enough for states
 # ggplot2 tibble tidyr readr purrr dplyr stringr forcats
 
-library("scales")
-library("hms") # hms, for times.
-library("lubridate") # lubridate, for date/times.
-library("readxl") # readxl, for .xls and .xlsx files.
-library("haven") # haven, for SPSS, SAS and Stata files.
-library("vctrs")
-library("precis")
+library(scales)
+library(hms) # hms, for times.
+library(lubridate) # lubridate, for date/times.
+library(readxl) # readxl, for .xls and .xlsx files.
+library(haven) # haven, for SPSS, SAS and Stata files.
+library(vctrs)
+library(precis)
 
-library("tibbletime") # https://business-science.github.io/tibbletime/
+library(tibbletime) # https://business-science.github.io/tibbletime/
 
-library("grDevices")
-library("knitr")
+library(grDevices)
+library(knitr)
 
-library("zoo") # for rollapply
+library(zoo) # for rollapply
 
-library("btools") # library that I created (install from github)
-library("bdata")
+library(btools) # library that I created (install from github)
+library(bdata)
 
 
 #****************************************************************************************************
-#                Get zip data ####
+# Get zip data ####
 #****************************************************************************************************
-
 fnz <- "QTAX-mf.zip"
 fnc <- "QTAX-mf.csv"
 
@@ -54,7 +61,7 @@ download.file(url, pathz, mode="wb")
 
 
 #****************************************************************************************************
-#                Read the zip data ####
+# Read the zip data ####
 #****************************************************************************************************
 # use readlines to read all into text
 # we want to have stabbr, date, ic, value
@@ -63,6 +70,7 @@ txt <- readLines(unz(pathz, fnc))
 length(txt)
 txt[1]
 txt[2]
+txt[3]
 
 # find the segments in txt
 segs <- read_delim("segname; seg
@@ -91,7 +99,7 @@ segs2 <- segs %>%
          end=ifelse(segname=="data", length(txt), end))
 segs2
 
-# now get each file
+# now get each file segment
 getseg <- function(segname) {
   start <- segs2$start[segs2$segname==segname]
   end <- segs2$end[segs2$segname==segname]
@@ -134,10 +142,10 @@ glimpse(data)
 #                Subset, organize, and save the data ####
 #****************************************************************************************************
 df <- data %>%
-  left_join(cats) %>%
-  left_join(dtype) %>%
-  left_join(geo) %>%
-  left_join(periods)
+  left_join(cats, by = "cat_idx") %>%
+  left_join(dtype, by = "dt_idx") %>%
+  left_join(geo, by = "geo_idx") %>%
+  left_join(periods, by = "per_idx")
 glimpse(df)
 count(df, is_adj)
 
@@ -161,7 +169,7 @@ df2 <- df %>%
 glimpse(df2)
 summary(df2)
 count(df2, date)
-count(df2, stabbr)
+count(df2, stabbr) # 50 states, but NOT DC or US
 count(df2, dt_code, dt_desc)
 ht(df2)
 
@@ -177,6 +185,7 @@ usrecs <- df3 %>%
 df4 <- bind_rows(df3, usrecs) %>%
   arrange(stabbr, date, ic, value)
 glimpse(df4)
+summary(df4) # 1994q1 - 2019q4, fdoq
 
 saveRDS(df4, "./data-raw/qtax_fromzip.rds")
 
