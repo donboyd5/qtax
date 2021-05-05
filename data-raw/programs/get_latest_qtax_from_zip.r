@@ -16,7 +16,7 @@
 #****************************************************************************************************
 # Libraries ####
 #****************************************************************************************************
-library("devtools")
+library(devtools)
 # devtools::check(cleanup = FALSE) # when we want to see check output no matter what
 
 
@@ -179,7 +179,7 @@ df3 <- df2 %>%
 
 usrecs <- df3 %>%
   group_by(date, ic) %>%
-  summarise(value=sum(value, na.rm=TRUE)) %>%
+  summarise(value=sum(value, na.rm=TRUE), .groups="drop") %>%
   mutate(stabbr="US")
 
 df4 <- bind_rows(df3, usrecs) %>%

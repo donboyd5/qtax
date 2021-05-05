@@ -10,11 +10,14 @@
 #
 #   http://r-pkgs.had.co.nz/
 #
-# Some useful keyboard shortcuts for package authoring:
-#
+
+# Useful keyboard shortcuts for package authoring:
+
+#   Documentation:             'Ctrl + Shift + D'
 #   Build and Reload Package:  'Ctrl + Shift + B'
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
+# NOTE: if the keyboard shortcuts are not working, change project options to use roxygenize
 
 
 #****************************************************************************************************
