@@ -98,6 +98,7 @@ ht(qtax)
 qtax %>% select(-value) %>% anyDuplicated()
 
 qtax %>% count(date) %>% data.frame # 1992 forward has the most values
+summary(qtax)
 
 comment(qtax) <- paste0("Quarterly tax data updated on ", Sys.Date(), ". ", filecomment)
 comment(qtax)
