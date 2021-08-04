@@ -1,7 +1,7 @@
 Package: qtax
 Type: Package
 Title: Quarterly State Government Tax Revenue from the Census Bureau
-Version: 0.2.0
+Version: 0.3.0
 Author: Don Boyd
 Maintainer: Don Boyd <donboyd5@gmail.com>
 Description: All states, and U.S., by tax.

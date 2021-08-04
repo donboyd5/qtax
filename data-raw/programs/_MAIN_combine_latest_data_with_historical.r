@@ -19,6 +19,15 @@
 #   Test Package:              'Ctrl + Shift + T'
 # NOTE: if the keyboard shortcuts are not working, change project options to use roxygenize
 
+devtools::build(
+  pkg = here::here(),
+  path = NULL,
+  binary = FALSE,
+  vignettes = FALSE,
+  manual = FALSE,
+  args = NULL,
+  quiet = FALSE)
+
 
 #****************************************************************************************************
 # Libraries ####
