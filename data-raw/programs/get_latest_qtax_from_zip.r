@@ -138,9 +138,7 @@ data
 glimpse(data)
 
 
-#****************************************************************************************************
-#                Subset, organize, and save the data ####
-#****************************************************************************************************
+# Subset, organize, and save the data -------------------------------------
 df <- data %>%
   left_join(cats, by = "cat_idx") %>%
   left_join(dtype, by = "dt_idx") %>%
@@ -185,7 +183,12 @@ usrecs <- df3 %>%
 df4 <- bind_rows(df3, usrecs) %>%
   arrange(stabbr, date, ic, value)
 glimpse(df4)
-summary(df4) # 1994q1 - 2019q4, fdoq
+summary(df4) # 1994q1 - 2021q3, fdoq
+df4 %>%
+  filter(stabbr=="NY", ic=="T09") %>%
+  ggplot(aes(date, value)) +
+  geom_line() +
+  geom_point()
 
 saveRDS(df4, "./data-raw/qtax_fromzip.rds")
 

@@ -37,7 +37,7 @@ library("lubridate") # lubridate, for date/times.
 library("readxl") # readxl, for .xls and .xlsx files.
 library("haven") # haven, for SPSS, SAS and Stata files.
 library("vctrs")
-library("precis")
+# library("precis")
 
 library("tibbletime") # https://business-science.github.io/tibbletime/
 

@@ -19,19 +19,18 @@
 #   Test Package:              'Ctrl + Shift + T'
 # NOTE: if the keyboard shortcuts are not working, change project options to use roxygenize
 
-devtools::build(
-  pkg = here::here(),
-  path = NULL,
-  binary = FALSE,
-  vignettes = FALSE,
-  manual = FALSE,
-  args = NULL,
-  quiet = FALSE)
+# devtools::build(
+#   pkg = here::here(),
+#   path = NULL,
+#   binary = FALSE,
+#   vignettes = FALSE,
+#   manual = FALSE,
+#   args = NULL,
+#   quiet = FALSE)
 
 
-#****************************************************************************************************
-# Libraries ####
-#****************************************************************************************************
+# libraries ---------------------------------------------------------------
+
 library(devtools)
 # devtools::check(cleanup = FALSE) # when we want to see check output no matter what
 
@@ -59,6 +58,8 @@ library(zoo) # for rollapply
 library(btools) # library that I created (install from github)
 library(bdata)
 
+tidyverse_conflicts()
+
 #****************************************************************************************************
 #                Get the already-created recent data that was obtained from the API or from a zip file ####
 #****************************************************************************************************
@@ -81,6 +82,7 @@ count(qnew, ic)
 #                Combine the new data with the historical data ####
 #****************************************************************************************************
 # Do this with every quarterly update
+# see get_latest_qtax_from_zip.r
 
 glimpse(qnew)
 summary(qnew)
@@ -108,9 +110,14 @@ qtax %>% select(-value) %>% anyDuplicated()
 
 qtax %>% count(date) %>% data.frame # 1992 forward has the most values
 summary(qtax)
+count(qtax, vname)
+# we don't have a vname for ic==T02 (what is it??)
+qtax %>%
+  filter(is.na(vname)) %>%
+  count(ic)
+
 
 comment(qtax) <- paste0("Quarterly tax data updated on ", Sys.Date(), ". ", filecomment)
 comment(qtax)
 use_data(qtax, overwrite = TRUE)
-
 

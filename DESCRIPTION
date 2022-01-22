@@ -9,7 +9,7 @@ Description: All states, and U.S., by tax.
     1994+ data obtained from the Census Bureau API or a Census zip file, depending upon availability.
     Historical data obtained from various Census Bureau files.
 Depends:
-    R (>= 2.10)    
+    R (>= 3.5.0)    
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
